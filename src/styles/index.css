@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-gray-900 text-gray-100 font-sans;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-800 text-white hover:bg-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+
+  .input {
+    @apply w-full bg-gray-800 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-300 mb-1;
+  }
+
+  .card {
+    @apply bg-gray-800 rounded-lg overflow-hidden shadow-lg;
+  }
+
+  .movie-grid {
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6;
+  }
+}
+
+/* Custom utility styles */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .backdrop-blur {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Video player custom styles */
+.video-player-container {
+  @apply relative overflow-hidden bg-black;
+  aspect-ratio: 16 / 9;
+}
+
+.video-player-controls {
+  @apply absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/80 to-transparent;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.video-player-container:hover .video-player-controls {
+  transform: translateY(0);
+}
+
+/* Modal styles */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm z-40;
+}
+
+.modal-container {
+  @apply fixed inset-0 z-50 overflow-y-auto;
+}
+
+.modal-content {
+  @apply relative bg-gray-800 rounded-lg shadow-xl max-w-lg mx-auto my-8 p-6;
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Loading states */
+.loading-skeleton {
+  @apply animate-pulse bg-gray-700 rounded;
+}
+
+.loading-overlay {
+  @apply absolute inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center;
+}
+
+/* Toast notifications */
+.toast-container {
+  @apply fixed bottom-4 right-4 z-50;
+}
+
+.toast {
+  @apply mb-2 p-4 rounded-lg shadow-lg text-white;
+  animation: slideUp 0.3s ease-out;
+}
+
+.toast-success {
+  @apply bg-green-600;
+}
+
+.toast-error {
+  @apply bg-red-600;
+}
+
+.toast-info {
+  @apply bg-blue-600;
+}
+
+/* Responsive typography */
+@screen sm {
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-2xl;
+  }
+}
+
+@screen md {
+  h1 {
+    @apply text-5xl;
+  }
+  h2 {
+    @apply text-4xl;
+  }
+  h3 {
+    @apply text-3xl;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+}
